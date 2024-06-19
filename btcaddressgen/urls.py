@@ -4,7 +4,6 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from django.contrib import admin
 from django.urls import path, include
-from .views import ExampleAPIView
 from .views import BitcoinAddressAPIView
 
 schema_view = get_schema_view(
@@ -26,6 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('btcaddressgenerator.urls')),
     path('btcaddressgenerator/', include('btcaddressgenerator.urls')),
-    path('example/', ExampleAPIView.as_view(), name='example-api'),
     path('bitcoin/address/', BitcoinAddressAPIView.as_view(), name='bitcoin-address'),
 ]
