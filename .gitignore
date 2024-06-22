@@ -1,0 +1,35 @@
+# Arquivos de configuração do sistema
+*.pyc
+*~
+/.vscode
+/.idea
+
+# Arquivos de dados
+db.sqlite3
+
+# Arquivos de mídia
+/media/
+/static/
+
+# Ambientes virtuais
+/venv/
+/.venv/
+
+# Arquivos de log
+/log/
+
+# Arquivos de backup
+*.bak
+*.swp
+
+# Arquivos de configuração pessoal
+*.DS_Store
+
+# Arquivo de variáveis de ambiente local
+.env
+
+# Dependendo do seu ambiente de desenvolvimento, você pode querer adicionar mais regras específicas aqui.
+
+# Ignore arquivos de migrações do Django, exceto o arquivo __init__.py
+# Mantenha __init__.py para garantir que a pasta de migrações seja reconhecida como um pacote Python válido.
+**/migrations/ !**/migrations/__init__.py

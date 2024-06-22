@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'btcaddressgenerator',
+    'noid',
     'drf_yasg',
     'rest_framework_swagger',
     'rest_framework',

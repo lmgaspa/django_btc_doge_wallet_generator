@@ -26,5 +26,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),  # Página inicial,
     path('btcaddressgenerator/', include('btcaddressgenerator.urls')),
-    path('', include('btcaddressgenerator.urls')),
+    path('noid/', include('noid.urls')),
+    path('', include('noid.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+"""
+path('', include('btcaddressgenerator.urls')),
+"""
