@@ -1,5 +1,3 @@
-# urls.py
-
 from django.urls import path, include
 from . import viewsnoid, views
 
