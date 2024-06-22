@@ -25,10 +25,6 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),  # Página inicial,
-    path('', include('btcaddressgenerator.urls')),
     path('btcaddressgenerator/', include('btcaddressgenerator.urls')),
+    path('', include('btcaddressgenerator.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-"""
-path('btcaddressgenerator/', include('btcaddressgenerator.urls')),
-"""
