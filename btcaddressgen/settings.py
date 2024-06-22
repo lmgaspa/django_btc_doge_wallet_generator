@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-l=ec0%z3^v!5r+gy)-d_m#bdjn#(%&*btipyzt%=5xvt-ju^)6'
 
@@ -79,14 +79,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
-
-# Diretório onde os arquivos estáticos coletados serão armazenados
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Diretórios adicionais onde o Django deve procurar arquivos estáticos
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
