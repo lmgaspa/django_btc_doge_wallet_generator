@@ -80,6 +80,11 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+# Diretório onde os arquivos estáticos coletados serão armazenados
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Diretórios adicionais onde o Django deve procurar arquivos estáticos
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
