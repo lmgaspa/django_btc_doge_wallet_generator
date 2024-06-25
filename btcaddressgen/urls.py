@@ -7,6 +7,7 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+
 schema_view = get_schema_view(
     openapi.Info(
         title="Bitcoin Address Generator",
@@ -26,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),  # Página inicial,
     path('btcaddressgenerator/', include('btcaddressgenerator.urls')),
+    path('solanaaddressgenerator/', include('solanaaddressgenerator.urls')),
     path('noid/', include('noid.urls')),
     path('', include('noid.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
