@@ -17,7 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'btcaddressgenerator',
+    'btc_address_generator',
     'create_wallets',
     'drf_yasg',
     'rest_framework_swagger',

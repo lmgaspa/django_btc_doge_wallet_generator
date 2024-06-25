@@ -6,7 +6,7 @@ from bitcoinlib.keys import HDKey
 from .serializers import BitcoinAddressGeneratorSerializer
 
 @api_view(['POST'])
-def btcaddressgenerator(request):
+def btc_address_generator(request):
     serializer = BitcoinAddressGeneratorSerializer(data=request.data)
     if serializer.is_valid():
         try:
