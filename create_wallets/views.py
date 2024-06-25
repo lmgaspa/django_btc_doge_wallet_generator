@@ -3,17 +3,17 @@ from django.http import JsonResponse
 from mnemonic import Mnemonic
 from bitcoinlib.keys import HDKey
 
-def noid(request):
+def create_wallets_btc(request):
+    # Criando carteira Bitcoin
     mnemo = Mnemonic("english")
     phrase = mnemo.generate()
     seed = mnemo.to_seed(phrase)
     key = HDKey.from_seed(seed)
     public_key = key.wif()
-    address = key.address()
+    bitcoin_address = key.address()
 
     data = {
-        'address': address
+        'bitcoin_address': bitcoin_address
     }
     
     return JsonResponse(data)
-    

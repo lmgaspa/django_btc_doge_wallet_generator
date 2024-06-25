@@ -27,9 +27,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),  # Página inicial,
     path('btcaddressgenerator/', include('btcaddressgenerator.urls')),
-    path('solanaaddressgenerator/', include('solanaaddressgenerator.urls')),
-    path('noid/', include('noid.urls')),
-    path('', include('noid.urls')),
+    path('create_wallets/', include('create_wallets.urls')),
+    path('', include('create_wallets.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 """
