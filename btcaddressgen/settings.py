@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'btc_address_generator',
+    'doge_address_generator',
     'create_wallets',
     'drf_yasg',
     'rest_framework_swagger',

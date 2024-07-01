@@ -27,6 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),  # Página inicial,
     path('btc_address_generator/', include('btc_address_generator.urls')),
+    path('doge_address_generator/', include('doge_address_generator.urls')),
     path('create_wallets/', include('create_wallets.urls')),
     path('', include('create_wallets.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
