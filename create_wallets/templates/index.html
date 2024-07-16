@@ -15,7 +15,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
       color: #fff;
     }
@@ -93,6 +93,11 @@
       justify-content: center;
     }
     
+    .qrcode img {
+      width: 100%;
+      max-width: 200px; /* Default size for larger screens */
+    }
+    
     button {
       padding: 10px 20px;
       border: none;
@@ -113,19 +118,22 @@
     
     @media (max-width: 992px) {
       h1 {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
       }
       .wallet-form h2 {
-        font-size: 1rem;
+        font-size: 1.3rem;
       }
     }
     
     @media (max-width: 768px) {
       h1 {
-        font-size: 1rem;
+        font-size: 1.3rem;
       }
       .wallet-form h2 {
-        font-size: 0.8rem;
+        font-size: 1.2rem;
+      }
+      .qrcode img {
+        max-width: 150px; /* Smaller size for mobile devices */
       }
     }
   </style>
@@ -232,6 +240,7 @@
           document.getElementById('btc_mnemonic').value = data.mnemonic;
           document.getElementById('btc_seed').value = data.seed;
           generateQRCode('btc_address', 'qrcode-btc');
+          window.scrollTo(0, 0); // Scroll to top
         })
         .catch(error => {
           console.error('Error generating Bitcoin address:', error);
@@ -247,6 +256,7 @@
           document.getElementById('doge_mnemonic').value = data.mnemonic;
           document.getElementById('doge_seed').value = data.seed;
           generateQRCode('doge_address', 'qrcode-doge');
+          window.scrollTo(0, 0); // Scroll to top
         })
         .catch(error => {
           console.error('Error generating Dogecoin address:', error);
@@ -257,7 +267,11 @@
       var inputElement = document.getElementById(inputId);
       var qrcodeContainer = document.getElementById(qrcodeId);
       qrcodeContainer.innerHTML = ""; // Clear previous QR code
-      new QRCode(qrcodeContainer, inputElement.value);
+      new QRCode(qrcodeContainer, {
+        text: inputElement.value,
+        width: window.innerWidth < 768 ? 150 : 200,
+        height: window.innerWidth < 768 ? 150 : 200
+      });
     }
   </script>
 </body>
