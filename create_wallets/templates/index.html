@@ -3,46 +3,262 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cryptocurrency Address Generator</title>
-  <!-- Load static files -->
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  <title>Cryptocurrency Wallet Generator</title>
+  <!-- Load Bootstrap CSS and Font Awesome -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #27233A;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+    }
+    
+    .container {
+      background: #FDFFFC;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      max-width: 1300px;
+      width: 100%;
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+      color: black;
+    }
+    
+    .wallets {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .wallet-form {
+      flex: 1;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+    }
+    
+    .wallet-form.bitcoin {
+      background: linear-gradient(135deg, #064C74, #9DFBF2);
+    }
+    
+    .wallet-form.dogecoin {
+      background: linear-gradient(135deg, #FFD972, #FFC972);
+    }
+    
+    .wallet-form h2 {
+      margin-bottom: 20px;
+      color: black;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: black;
+    }
+    
+    .input-group {
+      width: 95%;
+      margin-bottom: 10px;
+    }
+    
+    input[type="text"] {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-align: center;
+      background-color: #fff;
+      color: #333;
+    }
+    
+    .input-group-append {
+      cursor: pointer;
+    }
+    
+    .qrcode {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      background-color: #131842;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    button:hover {
+      background-color: #3B429F;
+    }
+    
+    button:active {
+      background-color: #3B429F;
+    }
+    
+    @media (max-width: 992px) {
+      h1 {
+        font-size: 1.2rem;
+      }
+      .wallet-form h2 {
+        font-size: 1rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1rem;
+      }
+      .wallet-form h2 {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>Cryptocurrency Address Generator</h1>
-    <form id="addressForm">
-      <label for="btc_address">Bitcoin Address:</label>
-      <input type="text" id="btc_address" name="btc_address" value="" required readonly />
-      <button type="button" id="generateBTCButton">Generate BTC Address</button><br><br>
-      <label for="doge_address">DogeCoin Address:</label>
-      <input type="text" id="doge_address" name="doge_address" value="" required readonly />
-      <button type="button" id="generateDOGEButton">Generate DOGE Address</button><br><br>
-    </form>
+    <div class="wallets row">
+      <div class="wallet-form bitcoin col-lg-6 col-md-12">
+        <h2>Bitcoin</h2>
+        <form id="btcForm">
+          <label for="btc_address">Bitcoin Address:</label>
+          <div class="input-group">
+            <input type="text" id="btc_address" name="btc_address" class="form-control" value="" required readonly />
+            <div class="input-group-append" onclick="copyToClipboard('btc_address')">
+              <span class="input-group-text"><i class="fas fa-copy"></i></span>
+            </div>
+          </div>
+          <label for="btc_privateKey">BTC PrivateKey:</label>
+          <div class="input-group">
+            <input type="text" id="btc_privateKey" name="btc_privateKey" class="form-control" value="" required readonly />
+            <div class="input-group-append" onclick="copyToClipboard('btc_privateKey')">
+              <span class="input-group-text"><i class="fas fa-copy"></i></span>
+            </div>
+          </div>
+          <label for="btc_mnemonic">BTC Mnemonic:</label>
+          <div class="input-group">
+            <input type="text" id="btc_mnemonic" name="btc_mnemonic" class="form-control" value="" required readonly />
+            <div class="input-group-append" onclick="copyToClipboard('btc_mnemonic')">
+              <span class="input-group-text"><i class="fas fa-copy"></i></span>
+            </div>
+          </div>
+          <label for="btc_seed">BTC Seed:</label>
+          <div class="input-group">
+            <input type="text" id="btc_seed" name="btc_seed" class="form-control" value="" required readonly />
+            <div class="input-group-append" onclick="copyToClipboard('btc_seed')">
+              <span class="input-group-text"><i class="fas fa-copy"></i></span>
+            </div>
+          </div>
+          <button type="button" id="generateBTCButton">Generate BTC Address</button>
+          <div id="qrcode-btc" class="qrcode"></div>
+        </form>
+      </div>
+      <div class="wallet-form dogecoin col-lg-6 col-md-12">
+        <h2>Dogecoin</h2>
+        <form id="dogeForm">
+          <label for="doge_address">Dogecoin Address:</label>
+          <div class="input-group">
+            <input type="text" id="doge_address" name="doge_address" class="form-control" value="" required readonly />
+            <div class="input-group-append" onclick="copyToClipboard('doge_address')">
+              <span class="input-group-text"><i class="fas fa-copy"></i></span>
+            </div>
+          </div>
+          <label for="doge_privateKey">Dogecoin PrivateKey:</label>
+          <div class="input-group">
+            <input type="text" id="doge_privateKey" name="doge_privateKey" class="form-control" value="" required readonly />
+            <div class="input-group-append" onclick="copyToClipboard('doge_privateKey')">
+              <span class="input-group-text"><i class="fas fa-copy"></i></span>
+            </div>
+          </div>
+          <label for="doge_mnemonic">Dogecoin Mnemonic:</label>
+          <div class="input-group">
+            <input type="text" id="doge_mnemonic" name="doge_mnemonic" class="form-control" value="" required readonly />
+            <div class="input-group-append" onclick="copyToClipboard('doge_mnemonic')">
+              <span class="input-group-text"><i class="fas fa-copy"></i></span>
+            </div>
+          </div>
+          <label for="doge_seed">Dogecoin Seed:</label>
+          <div class="input-group">
+            <input type="text" id="doge_seed" name="doge_seed" class="form-control" value="" required readonly />
+            <div class="input-group-append" onclick="copyToClipboard('doge_seed')">
+              <span class="input-group-text"><i class="fas fa-copy"></i></span>
+            </div>
+          </div>
+          <button type="button" id="generateDOGEButton">Generate DOGE Address</button>
+          <div id="qrcode-doge" class="qrcode"></div>
+        </form>
+      </div>
+    </div>
   </div>
+
+  <!-- Load Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 
   <!-- JavaScript for AJAX requests to generate addresses -->
   <script>
+    function copyToClipboard(id) {
+      var copyText = document.getElementById(id);
+      copyText.select();
+      copyText.setSelectionRange(0, 99999); /* For mobile devices */
+      document.execCommand("copy");
+      alert("Copied the text: " + copyText.value);
+    }
+
     document.getElementById('generateBTCButton').addEventListener('click', function() {
       fetch('/create_wallets_btc/')
         .then(response => response.json())
         .then(data => {
           document.getElementById('btc_address').value = data.bitcoin_address;
+          document.getElementById('btc_privateKey').value = data.private_key;
+          document.getElementById('btc_mnemonic').value = data.mnemonic;
+          document.getElementById('btc_seed').value = data.seed;
+          generateQRCode('btc_address', 'qrcode-btc');
         })
         .catch(error => {
           console.error('Error generating Bitcoin address:', error);
         });
     });
+
     document.getElementById('generateDOGEButton').addEventListener('click', function() {
       fetch('/create_wallets_doge/')
         .then(response => response.json())
         .then(data => {
           document.getElementById('doge_address').value = data.dogecoin_address;
+          document.getElementById('doge_privateKey').value = data.private_key;
+          document.getElementById('doge_mnemonic').value = data.mnemonic;
+          document.getElementById('doge_seed').value = data.seed;
+          generateQRCode('doge_address', 'qrcode-doge');
         })
         .catch(error => {
-          console.error('Error generating Litecoin address:', error);
+          console.error('Error generating Dogecoin address:', error);
         });
     });
+
+    function generateQRCode(inputId, qrcodeId) {
+      var inputElement = document.getElementById(inputId);
+      var qrcodeContainer = document.getElementById(qrcodeId);
+      qrcodeContainer.innerHTML = ""; // Clear previous QR code
+      new QRCode(qrcodeContainer, inputElement.value);
+    }
   </script>
 </body>
 </html>
