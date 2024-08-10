@@ -17,12 +17,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'btc_address_generator',
-    'doge_address_generator',
-    'create_wallets',
     'drf_yasg',
     'rest_framework_swagger',
     'rest_framework',
+    'django_filters',
+    'btc_address_generator',
+    'doge_address_generator',
+    'create_wallets',
 ]
 
 MIDDLEWARE = [
