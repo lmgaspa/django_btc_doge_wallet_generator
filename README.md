@@ -29,6 +29,8 @@ Provides direct links to view the generated addresses on blockchain explorers.
 
 ## Technologies Used
 
+### DJANGO + DJANGO REST FRAMEWORK
+
 ### HTML/CSS
 
 Basic structure and styling of the page.
@@ -43,8 +45,8 @@ Bootstrap 4: CSS framework for responsive layout and components.
 ### Font Awesome:
 Icons used in the interface.
 
-###QRCode.js:
+### QRCode.js:
 Library for generating QR codes.
 
-###Fetch API:
+### Fetch API:
 For communicating with the backend and retrieving wallet data.
