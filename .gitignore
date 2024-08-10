@@ -9,11 +9,10 @@ db.sqlite3
 
 # Arquivos de mídia
 /media/
-/static/
 
 # Ambientes virtuais
-/clean_env/
-/.clean_env/
+/venv/
+/.venv/
 
 # Arquivos de log
 /log/

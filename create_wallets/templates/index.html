@@ -34,6 +34,11 @@
       margin-bottom: 20px;
       color: black;
     }
+
+    h6 {
+      margin-top: 20px;
+      color: black;
+    }
     
     .wallets {
       display: flex;
@@ -174,6 +179,7 @@
             </div>
           </div>
           <button type="button" id="generateBTCButton">Generate BTC Address</button>
+          <h6 id="btc-explorer-link"></h6>
           <div id="qrcode-btc" class="qrcode"></div>
         </form>
       </div>
@@ -209,19 +215,18 @@
             </div>
           </div>
           <button type="button" id="generateDOGEButton">Generate DOGE Address</button>
+          <h6 id="doge-explorer-link"></h6>
           <div id="qrcode-doge" class="qrcode"></div>
         </form>
       </div>
     </div>
   </div>
-
-  <!-- Load Bootstrap JS and dependencies -->
+  
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 
-  <!-- JavaScript for AJAX requests to generate addresses -->
   <script>
     function copyToClipboard(id) {
       var copyText = document.getElementById(id);
@@ -240,7 +245,8 @@
           document.getElementById('btc_mnemonic').value = data.mnemonic;
           document.getElementById('btc_seed').value = data.seed;
           generateQRCode('btc_address', 'qrcode-btc');
-          window.scrollTo(0, 0); // Scroll to top
+          updateExplorerLink('btc-explorer-link', 'bitcoin', data.bitcoin_address);
+          window.scrollTo(0, 0);
         })
         .catch(error => {
           console.error('Error generating Bitcoin address:', error);
@@ -256,6 +262,7 @@
           document.getElementById('doge_mnemonic').value = data.mnemonic;
           document.getElementById('doge_seed').value = data.seed;
           generateQRCode('doge_address', 'qrcode-doge');
+          updateExplorerLink('doge-explorer-link', 'dogecoin', data.dogecoin_address);
           window.scrollTo(0, 0); // Scroll to top
         })
         .catch(error => {
@@ -272,6 +279,17 @@
         width: window.innerWidth < 768 ? 150 : 200,
         height: window.innerWidth < 768 ? 150 : 200
       });
+    }
+
+    function updateExplorerLink(linkId, type, address) {
+      var linkElement = document.getElementById(linkId);
+      var explorerURL;
+      if (type === 'bitcoin') {
+        explorerURL = `https://www.blockchain.com/explorer/addresses/btc/${address}`;
+      } else if (type === 'dogecoin') {
+        explorerURL = `https://live.blockcypher.com/doge/address/${address}`;
+      }
+      linkElement.innerHTML = `<i class="fas fa-search"></i> Explore your ${type.charAt(0).toUpperCase() + type.slice(1)} Address here: <a href="${explorerURL}" target="_blank">${explorerURL}</a>`;
     }
   </script>
 </body>
