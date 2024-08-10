@@ -18,8 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'btc_address_generator',
-    'doge_address_generator',
+    'drf_yasg',
     'create_wallets',
 ]
 
@@ -36,12 +35,12 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-ROOT_URLCONF = 'btcaddressgen.urls'
+ROOT_URLCONF = 'app_btc_doge_core.urls'
 
 TEMPLATES = [
     {
         'BACKEND':'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'btcaddressgenerator', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -54,7 +53,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'btcaddressgen.wsgi.application'
+WSGI_APPLICATION = 'app_btc_doge_core.wsgi.application'
 
 DATABASES = {
     'default': {

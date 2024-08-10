@@ -3,7 +3,8 @@
 This project is a simple web application that allows users to generate cryptocurrency wallet addresses for Bitcoin and Dogecoin. It leverages JavaScript, HTML, CSS, and external libraries to facilitate address creation, QR code generation, and copying private keys to the clipboard.
 
 ### VISIT OUR WEBSITE FOR TEST
-https://btcaddressgen.onrender.com/
+
+### DOCUMENTATION - SWAGGER
 
 ## Features
 

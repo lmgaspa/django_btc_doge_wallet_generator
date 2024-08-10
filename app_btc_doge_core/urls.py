@@ -7,12 +7,11 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
-
 schema_view = get_schema_view(
     openapi.Info(
-        title="Bitcoin Address Generator",
+        title="Bitcoin and Dogecoin Address Generator",
         default_version='v1',
-        description="a Bitcoin Address Generator",
+        description="a Bitcoin and Dogecoin Address Generator",
         terms_of_service="https://www.dianaglobal.com.br/policies/terms/",
         contact=openapi.Contact(email="luhmgasparetto@gmail.com"),
         license=openapi.License(name="Diana Global License"),
@@ -24,14 +23,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html'), name='index'),  # Página inicial,
-    path('btc_address_generator/', include('btc_address_generator.urls')),
-    path('doge_address_generator/', include('doge_address_generator.urls')),
-    path('create_wallets/', include('create_wallets.urls')),
+    
     path('', include('create_wallets.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-"""
-path('', include('btcaddressgenerator.urls')),
-"""

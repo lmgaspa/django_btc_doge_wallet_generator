@@ -2,6 +2,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'btcaddressgen.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app_btc_doge_core.settings')
 
 application = get_asgi_application()
