@@ -12,8 +12,8 @@ db.sqlite3
 /static/
 
 # Ambientes virtuais
-/venv/
-/.venv/
+/clean_env/
+/.clean_env/
 
 # Arquivos de log
 /log/
